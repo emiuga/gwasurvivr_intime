@@ -1,4 +1,4 @@
-createPlinkCoxSurv_intime <- function(b.file,
+createPlinkCoxSurv.intime <- function(b.file,
                                   covariate.file,
                                   id.column,
                                   sample.ids, 

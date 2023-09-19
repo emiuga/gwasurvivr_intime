@@ -84,11 +84,12 @@
 #'                              stringsAsFactors = FALSE)
 #' covariate.file$SexFemale <- ifelse(covariate.file$sex=="female", 1L, 0L)
 #' sample.ids <- covariate.file[covariate.file$group=="experimental",]$ID_2
-#' plinkCoxSurv(bed.file=bed.file,
+#' plinkCoxSurv.intime(bed.file=bed.file,
 #'              covariate.file=covariate.file,
 #'              id.column="ID_2",
 #'              sample.ids=sample.ids,
-#'              time.to.event="time",
+#'              time.start="time.start",
+#'              time.stop="time.stop",
 #'              event="event",
 #'              covariates=c("age", "SexFemale", "DrugTxYes"),
 #'              inter.term=NULL,
@@ -112,7 +113,7 @@
 #' @export
 
 
-plinkCoxSurv_intime <- function(bed.file,
+plinkCoxSurv.intime <- function(bed.file,
                          covariate.file,
                          id.column,
                          sample.ids=NULL, 
@@ -132,7 +133,7 @@ plinkCoxSurv_intime <- function(bed.file,
                          keepGDS = FALSE)
 {
   
-  coxSurv(createPlinkCoxSurv_intime(bed.file,
+  coxSurv(createPlinkCoxSurv.intime(bed.file,
                              covariate.file,
                              id.column,
                              sample.ids, 

@@ -133,7 +133,7 @@ plinkCoxSurv.intime <- function(bed.file,
                          keepGDS = FALSE)
 {
   
-  coxSurv(createPlinkCoxSurv.intime(bed.file,
+  coxSurv_intime(createPlinkCoxSurv.intime(bed.file,
                              covariate.file,
                              id.column,
                              sample.ids, 

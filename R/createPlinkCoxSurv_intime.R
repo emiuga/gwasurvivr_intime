@@ -1,0 +1,46 @@
+createPlinkCoxSurv_intime <- function(b.file,
+                                  covariate.file,
+                                  id.column,
+                                  sample.ids, 
+                                  time.start,
+                                  time.stop, 
+                                  event,
+                                  covariates,
+                                  inter.term,
+                                  print.covs,
+                                  out.file,
+                                  chunk.size,
+                                  maf.filter,
+                                  exclude.snps,
+                                  flip.dosage,
+                                  verbose,
+                                  clusterObj,
+                                  keepGDS){
+  
+  cox_surv <- list(b.file = b.file,
+                   covariate.file = covariate.file,
+                   id.column = id.column,
+                   sample.ids = sample.ids, 
+                   time.start = time.start,
+                   time.stop = time.stop, 
+                   event = event,
+                   covariates = covariates,
+                   inter.term = inter.term,
+                   print.covs = print.covs,
+                   out.file = out.file,
+                   chunk.size = chunk.size,
+                   maf.filter = maf.filter,
+                   exclude.snps = exclude.snps,
+                   flip.dosage =flip.dosage,
+                   verbose = verbose,
+                   clusterObj = clusterObj,
+                   keepGDS = keepGDS,
+                   columnHeadings = c("RSID","CHR", "POS","A0","A1", "exp_freq_A1","SAMP_MAF"),
+                   snp.df = data.frame(t(rep(NA, 7))),
+                   snp.cols = c("snpID","RSID","CHR","POS","A0","A1"),
+                   snp.ord = c("RSID","CHR","POS","A0","A1"))
+  
+  class(cox_surv) <- c("PlinkCoxSurv", "PlinkGdsImpute2CoxSurv")
+  
+  return(cox_surv)
+}

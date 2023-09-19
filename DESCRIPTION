@@ -6,7 +6,7 @@ Year: 2023
 Authors@R: 
   c(person(given = "Emilio",
            family = "Ugalde",
-           role = c("ctb"),
+           role = c("aut", "cre"),
            email = "ugalde.emilio@gmail.com")
     )
 Maintainer: Emilio Ugalde <ugalde.emilio@gmail.com>
@@ -31,7 +31,7 @@ Suggests:
 Depends:
     R (>= 3.4.0)
 License: Artistic-2.0
-URL: https://github.com/suchestoncampbelllab/gwasurvivr
+URL: https://github.com/emiuga/gwasurvivr_intime
 biocViews: 
     GenomeWideAssociation,
     Survival,

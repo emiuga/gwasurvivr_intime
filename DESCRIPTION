@@ -1,27 +1,16 @@
-Package: gwasurvivr
+Package: gwasurvivr_intime
 Type: Package
-Title: gwasurvivr: an R package for genome wide survival analysis 
-Version: 1.1
-Year: 2021
+Title: gwasurvivr_intime: extension of the gwasurvivr package for genome wide survival analysis allowing for interval time 
+Version: 0.1
+Year: 2023
 Authors@R: 
-  c(person(given = "Abbas",
-           family = "Rizvi",
-           role = c("aut", "cre"),
-           email = "aarizv@gmail.com"),
-    person(given = "Ezgi",
-           family = "Karaesmen",
-           role = "aut"),
-    person(given = "Martin",
-           family = "Morgan",
-           role = "aut"),
-    person(given = "Lara",
-           family = "Sucheston-Campbell",
-           role = "aut"),
-    person(given = "Mark",
-           family = "Platts",
-           role = "ctb"))
-Maintainer: Abbas Rizvi <aarizv@gmail.com>
-Description: gwasurvivr is a package to perform survival analysis using Cox proportional hazard models on imputed genetic data.
+  c(person(given = "Emilio",
+           family = "Ugalde",
+           role = c("ctb"),
+           email = "ugalde.emilio@gmail.com")
+    )
+Maintainer: Emilio Ugalde <ugalde.emilio@gmail.com>
+Description: extension of the gwasurvivr is a package <https://github.com/suchestoncampbelllab/gwasurvivr> to perform INTERVAL TIME survival analysis using Cox proportional hazard models on imputed genetic data.
 VignetteBuilder:
     knitr
 Imports:

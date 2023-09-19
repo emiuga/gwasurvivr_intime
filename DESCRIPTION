@@ -1,6 +1,6 @@
-Package: gwasurvivr_intime
+Package: gwasurvivr.intime
 Type: Package
-Title: gwasurvivr_intime: extension of the gwasurvivr package for genome wide survival analysis allowing for interval time 
+Title: gwasurvivr.intime: extension of the gwasurvivr package for genome wide survival analysis allowing for interval time 
 Version: 0.1
 Year: 2023
 Authors@R: 

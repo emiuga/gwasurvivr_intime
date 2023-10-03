@@ -40,7 +40,7 @@ createPlinkCoxSurv.intime <- function(b.file,
                    snp.cols = c("snpID","RSID","CHR","POS","A0","A1"),
                    snp.ord = c("RSID","CHR","POS","A0","A1"))
   
-  class(cox_surv) <- c("PlinkCoxSurv", "PlinkGdsImpute2CoxSurv")
+  class(cox_surv) <- c("PlinkCoxSurv", "PlinkGdsImpute2CoxSurv_intime")
   
   return(cox_surv)
 }

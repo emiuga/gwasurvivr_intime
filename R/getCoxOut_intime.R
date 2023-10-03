@@ -1,22 +1,40 @@
+# emiuga: temporarily, throw stop error if including interaction term
+
 getGenotypesCoxOut_intime <- function(inter.term, genotypes, cl, cox.params,
-                        print.covs) {
+                               print.covs) {
   
   if(is.null(inter.term)){
     if(is.matrix(genotypes)){
       cox.out <- t(parApply(cl=cl,
                             X=genotypes, 
                             MARGIN=1, 
-                            FUN=survFit_intime, 
+                            FUN=survFit, 
                             cox.params=cox.params,
                             print.covs=print.covs))
     } else {
-      cox.out <- survFit_intime(genotypes,
+      cox.out <- survFit(genotypes,
                          cox.params=cox.params,
                          print.covs=print.covs) 
     }
-    
-    return(cox.out)
-    
   } else if(inter.term %in% covariates) {
-  	stop("Interaction terms have not been implemented for left-truncated data!")
+    stop("Interaction terms have not been implemented for left-truncated data!")
+  } else if(inter.term %in% covariates) {
+    if(is.matrix(genotypes)){
+      cox.out <- t(parApply(cl=cl,
+                            X=genotypes,
+                            MARGIN=1,
+                            FUN=survFitInt, 
+                            cox.params=cox.params, 
+                            cov.interaction=inter.term,
+                            print.covs=print.covs))
+    } else {
+      cox.out <- survFitInt(genotypes,
+                            cox.params=cox.params,
+                            cov.interaction=inter.term, 
+                            print.covs=print.covs)
+    }
   }
+  
+  return(cox.out)
+  
+}

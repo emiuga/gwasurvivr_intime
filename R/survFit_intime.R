@@ -17,7 +17,7 @@ survFit_intime <- function(SNP, cox.params, print.covs){
         ## emiuga: Use aggre.fit for left-truncated data (type!="right") and method!='exact'
         type <- attr(Y, "type")
         if(type=="right") stop("Data is not in left-truncated format")
-        if(cox.params$METHOD=="breslow" || cox.params$METHOD =="efron")) {
+        if(cox.params$METHOD=="breslow" || cox.params$METHOD =="efron") {
         fit <- agreg.fit(X,
                          Y,
                          cox.params$STRATA,

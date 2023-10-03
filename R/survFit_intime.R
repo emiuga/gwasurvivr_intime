@@ -14,23 +14,17 @@ survFit_intime <- function(SNP, cox.params, print.covs){
   }
   
   ## run fit with pre-defined parameters including INIT
-  ## emiuga: Use aggre.fit for left-truncated data (type!="right") and method!='exact'
-  type <- attr(Y, "type")
-  if(type=="right") {
-    stop("Data is not in left-truncated format")
-  } else if(cox.params$METHOD=="breslow" || cox.params$METHOD =="efron") {
-    fit <- agreg.fit(X,
-                     Y,
-                     cox.params$STRATA,
-                     cox.params$OFFSET,
-                     cox.params$INIT, 
-                     cox.params$CONTROL,
-                     cox.params$WEIGHTS,
-                     cox.params$METHOD, 
-                     ROWNAMES)
-  } else {
-    stop("Method is not 'breslow' or 'efron'.")
-  }
+  ## emiuga: Use aggre.fit for left-truncated data 
+  fit <- agreg.fit(X,
+                   Y,
+                   cox.params$STRATA,
+                   cox.params$OFFSET,
+                   cox.params$INIT, 
+                   cox.params$CONTROL,
+                   cox.params$WEIGHTS,
+                   cox.params$METHOD, 
+                   ROWNAMES)
+  
   
   ## extract statistics
   if(print.covs=="only") {

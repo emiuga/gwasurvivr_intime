@@ -60,30 +60,30 @@ coxParam_intime <-
             pheno.file <- matrix(pheno.file[, covariates], ncol = 1)
             colnames(pheno.file) <- covariates
             INIT <- NULL
-            init.fit <- coxph.fit(pheno.file,
-                                  Y,
-                                  STRATA,
-                                  OFFSET,
-                                  INIT,
-                                  CONTROL,
-                                  WEIGHTS,
-                                  METHOD,
-                                  ROWNAMES)
+            init.fit <- agreg.fit(x=pheno.file,
+                                  y=Y,
+                                  strata=STRATA,
+                                  offset=OFFSET,
+                                  init=INIT,
+                                  control=CONTROL,
+                                  weights=WEIGHTS,
+                                  method=METHOD,
+                                  rownames=ROWNAMES)
             
             INIT <- c(0,  init.fit$coefficients)
             
         } else {
             pheno.file <- pheno.file[, covariates]
             INIT <- NULL
-            init.fit <- coxph.fit(pheno.file,
-                                  Y,
-                                  STRATA,
-                                  OFFSET,
-                                  INIT,
-                                  CONTROL,
-                                  WEIGHTS,
-                                  METHOD,
-                                  ROWNAMES)
+            init.fit <- agreg.fit(x=pheno.file,
+                                  y=Y,
+                                  strata=STRATA,
+                                  offset=OFFSET,
+                                  init=INIT,
+                                  control=CONTROL,
+                                  weights=WEIGHTS,
+                                  method=METHOD,
+                                  rownames=ROWNAMES)
             
             INIT <- c(0,  init.fit$coefficients)
         }

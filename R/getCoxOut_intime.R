@@ -8,11 +8,11 @@ getGenotypesCoxOut_intime <- function(inter.term, genotypes, cl, cox.params,
       cox.out <- t(parApply(cl=cl,
                             X=genotypes, 
                             MARGIN=1, 
-                            FUN=survFit, 
+                            FUN=survFit_intime, 
                             cox.params=cox.params,
                             print.covs=print.covs))
     } else {
-      cox.out <- survFit(genotypes,
+      cox.out <- survFit_intime(genotypes,
                          cox.params=cox.params,
                          print.covs=print.covs) 
     }

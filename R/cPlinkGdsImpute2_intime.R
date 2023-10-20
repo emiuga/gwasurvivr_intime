@@ -1,4 +1,8 @@
-# emiuga: call 'getGenotypesCoxOut_intime' function in 'createPlinkCoxSurv_intime.R' script
+# emiuga: call 'getGenotypesCoxOut_intime' function in 'createPlinkCoxSurv_intime.R' script which is of class "PlinkGdsImpute2CoxSurv_intime" (this will call the 'survFitInt_intime' function using the 'getCoxOut_intime.R' script).
+
+# NOTES: 
+# runOnChunks_intime function adapted to call 'getGenotypesCoxOut_intime'
+# removed unchaged functions (respect original code) to avoid duplication: 'writeFileHeadings'
 
 loadProcessWrite.PlinkGdsImpute2CoxSurv_intime <- function(x, cl, cox.params) {
   
@@ -6,48 +10,14 @@ loadProcessWrite.PlinkGdsImpute2CoxSurv_intime <- function(x, cl, cox.params) {
   
   genoData <- getGenoData(x)
   
-  results <- runOnChunks(x, genoData, cox.params, cl)
+  results <- runOnChunks_intime(x, genoData, cox.params, cl)
   
   return(list(snps_removed = results$snp.drop.n, 
               snps_analyzed = results$snp.n))
 }
 
-writeFileHeadings <- function(x, cox.params){
-  
-  # set up columns for output
-  write.table( t(x$columnHeadings),
-               paste0(x$out.file, ".snps_removed"),
-               row.names = FALSE,
-               col.names=FALSE,
-               sep="\t",
-               quote = FALSE,
-               append = FALSE)
-  
-  colnames(x$snp.df) <- x$columnHeadings
-  rownames(x$snp.df) <- NULL
-  
-  cox.out <- getSnpSpikeCoxOut(
-    x$inter.term, 
-    snp.spike = createSnpSpike(x, cox.params),
-    cox.params, 
-    x$print.covs)
-  
-  res.cols <- colnames(coxExtract(cox.out,
-                                  x$snp.df,
-                                  print.covs=x$print.covs))
-  
-  write.table(t(res.cols),
-              paste0(x$out.file, ".coxph"),
-              row.names = FALSE,
-              col.names=FALSE,
-              sep="\t",
-              quote = FALSE,
-              append = FALSE)
-  
-}
 
-
-runOnChunks <- function(x, genoData, cox.params, cl) {
+runOnChunks_intime <- function(x, genoData, cox.params, cl) {
   
   # number of snps in segment
   snp.start <- 1

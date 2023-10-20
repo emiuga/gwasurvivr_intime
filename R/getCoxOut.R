@@ -1,4 +1,6 @@
-getGenotypesCoxOut <- function(inter.term, genotypes, cl, cox.params,
+## emiuga: add 'covariates' argument to function
+
+getGenotypesCoxOut <- function(inter.term, covariates, genotypes, cl, cox.params,
                         print.covs) {
   
   if(is.null(inter.term)){

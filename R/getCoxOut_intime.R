@@ -17,18 +17,16 @@ getGenotypesCoxOut_intime <- function(inter.term, genotypes, cl, cox.params,
                          print.covs=print.covs) 
     }
   } else if(inter.term %in% covariates) {
-    stop("Interaction terms have not been implemented for left-truncated data!")
-  } else if(inter.term %in% covariates) {
     if(is.matrix(genotypes)){
       cox.out <- t(parApply(cl=cl,
                             X=genotypes,
                             MARGIN=1,
-                            FUN=survFitInt, 
+                            FUN=survFitInt_intime, 
                             cox.params=cox.params, 
                             cov.interaction=inter.term,
                             print.covs=print.covs))
     } else {
-      cox.out <- survFitInt(genotypes,
+      cox.out <- survFitInt_intime(genotypes,
                             cox.params=cox.params,
                             cov.interaction=inter.term, 
                             print.covs=print.covs)

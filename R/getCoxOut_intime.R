@@ -1,6 +1,4 @@
-# emiuga: temporarily, throw stop error if including interaction term
-
-getGenotypesCoxOut_intime <- function(inter.term, genotypes, cl, cox.params,
+getGenotypesCoxOut_intime <- function(inter.term, covariates, genotypes, cl, cox.params,
                                print.covs) {
   
   if(is.null(inter.term)){

@@ -121,7 +121,7 @@ runOnChunks_intime <- function(x, genoData, cox.params, cl) {
     
     if (nrow(genotypes) > 0) {
       # fit models in parallel
-      cox.out <- getGenotypesCoxOut_intime(x$inter.term, covariates, genotypes, cl, cox.params,
+      cox.out <- getGenotypesCoxOut_intime(x$inter.term, genotypes, cl, cox.params,
                                     x$print.covs)
       
       res <- coxExtract(cox.out,

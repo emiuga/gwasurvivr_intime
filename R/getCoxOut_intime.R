@@ -1,4 +1,6 @@
-getGenotypesCoxOut_intime <- function(inter.term, covariates, genotypes, cl, cox.params,
+#emiuga: note, added 'cox.params$covariates' because error: "object 'covariates' not found"
+
+getGenotypesCoxOut_intime <- function(inter.term, genotypes, cl, cox.params,
                                print.covs) {
   
   if(is.null(inter.term)){
@@ -14,7 +16,7 @@ getGenotypesCoxOut_intime <- function(inter.term, covariates, genotypes, cl, cox
                          cox.params=cox.params,
                          print.covs=print.covs) 
     }
-  } else if(inter.term %in% covariates) {
+  } else if(inter.term %in% cox.params$covariates) {
     if(is.matrix(genotypes)){
       cox.out <- t(parApply(cl=cl,
                             X=genotypes,

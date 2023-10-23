@@ -18,7 +18,7 @@ loadProcessWrite.PlinkGdsImpute2CoxSurv_intime <- function(x, cl, cox.params) {
 }
 
 
-runOnChunks_intime <- function(x, genoData, cox.params, cl, covariates) {
+runOnChunks_intime <- function(x, genoData, cox.params, cl) {
   
   # number of snps in segment
   snp.start <- 1

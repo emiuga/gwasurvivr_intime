@@ -1,6 +1,6 @@
-## emiuga: add 'covariates' argument to function
+## emiuga: note, added 'cox.params$' to 'covariates' (line 19) because error: "object 'covariates' not found"
 
-getGenotypesCoxOut <- function(inter.term, covariates, genotypes, cl, cox.params,
+getGenotypesCoxOut <- function(inter.term, genotypes, cl, cox.params,
                         print.covs) {
   
   if(is.null(inter.term)){
@@ -16,7 +16,7 @@ getGenotypesCoxOut <- function(inter.term, covariates, genotypes, cl, cox.params
                          cox.params=cox.params,
                          print.covs=print.covs) 
     }
-  } else if(inter.term %in% covariates) {
+  } else if(inter.term %in% cox.params$covariates) {
     if(is.matrix(genotypes)){
       cox.out <- t(parApply(cl=cl,
                             X=genotypes,

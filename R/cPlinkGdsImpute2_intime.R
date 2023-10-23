@@ -2,12 +2,11 @@
 
 # NOTES: 
 # runOnChunks_intime function adapted to call 'getGenotypesCoxOut_intime'
-# removed unchaged functions (respect original code) to avoid duplication: 'writeFileHeadings'
-# added 'covariates' argument to 'getGenotypesCoxOut' function
+# writeFileHeadings_intime function adapted to call 'getSnpSpikeCoxOut_intime'
 
 loadProcessWrite.PlinkGdsImpute2CoxSurv_intime <- function(x, cl, cox.params) {
   
-  writeFileHeadings(x, cox.params = cox.params)
+  writeFileHeadings_intime(x, cox.params = cox.params)
   
   genoData <- getGenoData(x)
   
@@ -15,6 +14,41 @@ loadProcessWrite.PlinkGdsImpute2CoxSurv_intime <- function(x, cl, cox.params) {
   
   return(list(snps_removed = results$snp.drop.n, 
               snps_analyzed = results$snp.n))
+}
+
+
+writeFileHeadings_intime <- function(x, cox.params){
+  
+  # set up columns for output
+  write.table( t(x$columnHeadings),
+               paste0(x$out.file, ".snps_removed"),
+               row.names = FALSE,
+               col.names=FALSE,
+               sep="\t",
+               quote = FALSE,
+               append = FALSE)
+  
+  colnames(x$snp.df) <- x$columnHeadings
+  rownames(x$snp.df) <- NULL
+  
+  cox.out <- getSnpSpikeCoxOut_intime(
+    x$inter.term, 
+    snp.spike = createSnpSpike(x, cox.params),
+    cox.params, 
+    x$print.covs)
+  
+  res.cols <- colnames(coxExtract(cox.out,
+                                  x$snp.df,
+                                  print.covs=x$print.covs))
+  
+  write.table(t(res.cols),
+              paste0(x$out.file, ".coxph"),
+              row.names = FALSE,
+              col.names=FALSE,
+              sep="\t",
+              quote = FALSE,
+              append = FALSE)
+  
 }
 
 
